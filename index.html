@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Dead Letter Box</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #444444;
+    }
+
+    body {
+        margin-top: 0;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        margin-bottom: 0;
+        background-color: #eceff1;
+    }
+
+    h1 {
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+    }
+
+    #input-box, #header, #messages-box, #temp-box {
+        width: 100%;
+    }
+
+    #temp-box {
+        border-top-style: solid;
+        border-top-color: #444444;
+        border-top-width: 0.2em;
+    }
+
+    input {
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 0.5em;
+        padding:0.5em;
+        font-size:1.5em;
+        margin-bottom: 0.5em;
+    }
+</style>
+<script language="JavaScript">
+
+    function add_msg(){
+        var req = new XMLHttpRequest();
+        var msg = document.getElementById("new-message-text").value;
+        req.open("GET", "/msg:" + msg, false);
+        req.send();
+        location.reload(true);
+    }
+
+</script>
+<body>
+
+<div id="header">
+    <h1>Dead Letter Box</h1>
+</div>
+
+<div id="input-box">
+    <input type="text" name="msg" id="new-message-text" />
+    <input type="button" id="new-messager-button" value="ADD" onclick="add_msg()" />
+</div>
+
+<div class="messages-box">
+    #MSGS#
+</div>
+
+<div class="temp-box">
+    <p>Current Temperature: <b>#TEMP#°C</b></p>
+</div>
+
+</body>
+</html>
